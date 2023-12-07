@@ -18,3 +18,5 @@ xcode-select --version
 2. `code runner`
 
 接下来就可以直接在，例如`helloworld.c`文件里写代码，写完代码点击Run Code运行代码
+
+注意：mac系统更新，可能导致路径失效
