@@ -8,8 +8,7 @@
  * 0010 1010
 */
 
-int main()
-{
+int main() {
   // 初始化一个八位的二进制数
   int binaryNumber = 0;// 0000 0000
 

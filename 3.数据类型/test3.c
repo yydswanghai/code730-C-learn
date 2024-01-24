@@ -1,14 +1,16 @@
-// 四则运算
-
 #include <stdio.h>
 
-int main()
-{
-  int a = 0;
-  int b = 0;
-  printf("请输入两个整数: ");
-  scanf("%d %d", &a, &b);
-  printf("%d + %d = %d\n", a, b, a+b);
+int main() {
+  char c = 255;
+  int i = 255;
+  printf("c=%d,i=%d\n", c, i);
+  // c=-1,i=255
+  // c 11111111
+  // i 00000000 00000000 00000000 11111111 
+
+  unsigned char c2 = 255;
+  printf("c2=%d\n", c2);
+  // 255
   
   return 0;
 }
