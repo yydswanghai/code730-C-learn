@@ -27,6 +27,12 @@ int main(int argc, char const *argv[]) {
   return 0;
 }
 
-struct time timeUpdate(struct time now){
-  
+// 更新一秒
+struct time timeUpdate(struct time now) {
+  ++now.seconds;
+  if (now.seconds == 60) {
+    now.seconds = 0;
+    now.minutes++;
+  }
+  return now;
 }

@@ -108,3 +108,73 @@ struct date dates[] = {
 };
 ```
 
+## 结构中的结构
+
+```c
+struct dateAndTime {
+  struct date sdate;
+  struct time stime;
+}
+```
+
+## 嵌套的结构
+
+
+
+## 自定义数据类型 (typedef)
+
+* C语言提供了一个叫做`typedef`的功能来声明一个已有的数据类型的新名字，比如：
+
+```c
+typedef int Length;
+```
+
+使得`Length`成为`int`的别名
+
+* 这样，`Length`这个名字就可以代替`int`出现在变量定义和参数声明的地方了
+
+声明新的类型的名字
+  * 新的名字是某种类型的别名
+  * 改善了程序的可读性
+
+最后一个才是它的别名，中间的是它实际的东西
+
+```c
+typedef long int64_t;
+typedef struct ADate {
+  int month;
+  int day;
+  int year;
+} Date;
+int64_t i = 100000000000;
+Date d = {9,1,2005}
+
+typedef *char[10] Strings;// Strings是10个字符串的数组
+typedef struct node {
+  int data;
+  struct node *next;
+} aNode;
+// 或
+typedef struct node aNode;// 这样用aNode就可以代替struct node
+```
+
+## 联合
+
+```c
+union AnEit {
+  int i;
+  char c;
+} elt1, elt2;
+
+elt1.i = 4;
+elt2.c = 'a';
+elt2.i = 0xDEADBEEF;
+```
+
+选择：成员是
+* 一个`int i`还是
+* 又一个`char c`
+* 这两个成员占据了相同的内存空间，仅一份
+
+`sizeof(union ...)` = sizeof(每个成员)的最大值
+

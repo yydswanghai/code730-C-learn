@@ -1,6 +1,10 @@
 {
   "files.associations": {
-    "stdio.h": "c"
+    "stdio.h": "c",
+    "max.h": "c",
+    "__locale": "c",
+    "atomic": "c",
+    "bitset": "c"
   },
   "C_Cpp.errorSquiggles": "disabled"
 }
