@@ -4,7 +4,14 @@
     "max.h": "c",
     "__locale": "c",
     "atomic": "c",
-    "bitset": "c"
+    "bitset": "c",
+    "types.h": "c",
+    "socket.h": "c",
+    "unistd.h": "c",
+    "__bit_reference": "c",
+    "unordered_map": "c",
+    "inet.h": "c",
+    "stdlib.h": "c"
   },
   "C_Cpp.errorSquiggles": "disabled"
 }
