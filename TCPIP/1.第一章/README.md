@@ -132,32 +132,3 @@ ssize_t write(int fd, const void* buf, size_t nbytes);
  */
 ssize_t read(int fd, void* buf, size_t nbytes);
 ```
-
-## Linux 平台下运行
-
-1. 编译
-
-```shell
-gcc hello_server.c -o hserver
-```
-
-编译hello_server.c文件并生成可执行文件hserver。-o 是用来指定可执行文件名的可选参数
-
-因此编译后将可执行文件hserver
-
-2. 运行
-
-```shell
-gcc hello_server.c -o hserver
-./hserver 9190
-```
-
-正常情况下程序将停留在此状态，因为服务器端调用的accept函数还未返回。接下来运行客户端
-
-```shell
-gcc hello_client.c -o hclient
-./hclient 127.0.0.1 9190
-```
-
-正常你会看到服务器端返回的`hello world!`，由此查看客户端消息传输过程，同时发现，完成消息传输后，服务器端和客户端都停止运行了。
-执行过程中输入端`127.0.0.1`是运行示例用的计算机（本机）的IP地址。如果在同一台计算机中同时运行服务器端和客户端，将采用这种连接方式。但如果服务器端与客户端不在同一台计算机中运行，则应采用服务器端所在计算机的IP地址。

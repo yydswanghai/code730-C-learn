@@ -23,3 +23,7 @@ int main(int argc, char const *argv[])
   close(fd);
   return 0;
 }
+/**
+ * gcc low_open.c ../common/index.c -o open
+ * ./open
+*/
