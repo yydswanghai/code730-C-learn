@@ -25,9 +25,9 @@ int main(int argc, char const *argv[])
     printf("Usage : %s <port>\n", argv[0]);
     exit(1);
   }
-
-  act.sa_handler = urg_handler;
-  sigemptyset(&act, sa_mask);
+  
+  act.sa_handler = urg_handler;// 224
+  sigemptyset(&act.sa_mask);
   act.sa_flags = 0;
 
   acpt_sock = socket(PF_INET, SOCK_STREAM, 0);
@@ -44,8 +44,8 @@ int main(int argc, char const *argv[])
   serv_adr_sz = sizeof(serv_adr);
   recv_sock = accept(acpt_sock, (struct sockaddr*)&serv_adr, &serv_adr_sz);
 
-  fcntl(recv_sock, F_SETOWN, getpid());
-  state = sigaction(SIGURG, &act, 0);
+  fcntl(recv_sock, F_SETOWN, getpid());// 用于控制文件描述符 225页
+  state = sigaction(SIGURG, &act, 0);// 当收到MSG_OOB紧急消息时，操作系统将产生SIGURG信号
 
   while ((str_len = recv(recv_sock, buf, sizeof(buf), 0)) != 0)
   {
@@ -53,7 +53,8 @@ int main(int argc, char const *argv[])
       continue;
     }
     buf[str_len] = 0;
-    puts(buf);
+    // puts(buf);
+    printf("%s \n", buf);
   }
   close(recv_sock);
   close(acpt_sock);
@@ -65,7 +66,7 @@ void urg_handler(int signo) {
   char buf[BUF_SIZE];
   str_len = recv(recv_sock, buf, sizeof(buf)-1, MSG_OOB);
   buf[str_len] = 0;
-  printf("Urgent message: %s \n", buf);
+  printf("oob_msg: %s \n", buf);
 }
 void error_handling(char *message) {
   fputs(message, stderr);

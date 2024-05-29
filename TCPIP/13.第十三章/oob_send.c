@@ -26,11 +26,11 @@ int main(int argc, char const *argv[])
   if (connect(sock, (struct sockaddr*)&recv_adr, sizeof(recv_adr)) == -1) {
     error_handling("connect() error");
   }
-  printf("%lu \n", strlen("123"));// 正常顺序：123 4 567 890
-  write(sock, "123", strlen("123"));
-  send(sock, "4", strlen("4"), MSG_OOB);// 紧急传输数据
-  write(sock, "567", strlen("567"));
-  send(sock, "890", strlen("890"), MSG_OOB);// 紧急传输数据
+  // 正常顺序：12 -> 36 -> 45 -> 89  strlen("12") = 2
+  write(sock, "12", strlen("12"));
+  send(sock, "36", strlen("36"), MSG_OOB);// 紧急传输数据
+  write(sock, "45", strlen("45"));
+  send(sock, "89", strlen("89"), MSG_OOB);// 紧急传输数据
   close(sock);
   return 0;
 }
@@ -40,3 +40,8 @@ void error_handling(char *message) {
   fputc('\n', stderr);
   exit(1);
 }
+
+// oob_msg: 6
+// oob_msg: 9
+// 123
+// 458

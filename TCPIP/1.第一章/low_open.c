@@ -3,8 +3,7 @@
 #include <stdlib.h>
 #include <fcntl.h>
 #include <unistd.h>
-
-void error_handling(char *message);
+#include "../common/index.h"
 
 int main(int argc, char const *argv[])
 {
@@ -23,10 +22,4 @@ int main(int argc, char const *argv[])
   }
   close(fd);
   return 0;
-}
-
-void error_handling(char *message) {
-  fputs(message, stderr);
-  fputc('\n', stderr);
-  exit(1);
 }

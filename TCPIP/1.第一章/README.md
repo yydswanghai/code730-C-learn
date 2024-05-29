@@ -19,7 +19,11 @@
   * 而 ANSI 标准定义的文件 I/O 函数则提供了更标准化、更简单的接口，具有较好的移植性和较简单的错误处理机制。
 7. 参考本书给出的示例low_open.c和low_read.c，分别利用底层文件I/O和ANSI标准I/O编写文件复制程序。可任意指定复制程序的使用方法。
 
+## 理解网络编程和套接字
+
 ```c
+#include <sys/socket.h>
+
 /**
  * 套接字的创建 (安装电话机)
  * @param domain 套接字中使用的协议族信息
@@ -131,21 +135,17 @@ ssize_t read(int fd, void* buf, size_t nbytes);
 
 ## Linux 平台下运行
 
+1. 编译
+
 ```shell
 gcc hello_server.c -o hserver
 ```
 
-编译hello_server.c文件并生成可执行文件hserver。
+编译hello_server.c文件并生成可执行文件hserver。-o 是用来指定可执行文件名的可选参数
 
--o 是用来指定可执行文件名的可选参数
+因此编译后将可执行文件hserver
 
-因此编译后将可执行文件hserver，可如下执行此命令
-
-```shell
-./hserver
-```
-
-运行示例：
+2. 运行
 
 ```shell
 gcc hello_server.c -o hserver
@@ -161,30 +161,3 @@ gcc hello_client.c -o hclient
 
 正常你会看到服务器端返回的`hello world!`，由此查看客户端消息传输过程，同时发现，完成消息传输后，服务器端和客户端都停止运行了。
 执行过程中输入端`127.0.0.1`是运行示例用的计算机（本机）的IP地址。如果在同一台计算机中同时运行服务器端和客户端，将采用这种连接方式。但如果服务器端与客户端不在同一台计算机中运行，则应采用服务器端所在计算机的IP地址。
-
-运行low_open示例
-
-```shell
-gcc low_open.c -o lopen
-./lopen
-
-file descriptor: 
-
-cat data.txt
-```
-
-运行low_read示例
-
-```shell
-gcc low_read.c -o lread
-./lread
-
-file descriptor: 
-```
-
-运行fd_seri示例
-
-```shell
-gcc fd_seri.c -o fds
-./fds
-```

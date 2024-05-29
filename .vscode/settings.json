@@ -11,7 +11,8 @@
     "__bit_reference": "c",
     "unordered_map": "c",
     "inet.h": "c",
-    "stdlib.h": "c"
+    "stdlib.h": "c",
+    "error_handling.h": "c"
   },
   "C_Cpp.errorSquiggles": "disabled"
 }
