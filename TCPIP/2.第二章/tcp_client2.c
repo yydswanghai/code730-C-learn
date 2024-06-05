@@ -50,3 +50,7 @@ void error_handling(char *message) {
   fputc('\n', stderr);
   exit(1);
 }
+/**
+ * gcc tcp_client2.c -o client2
+ * ./client2 127.0.0.1 9190
+*/

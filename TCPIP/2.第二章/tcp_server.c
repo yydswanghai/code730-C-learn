@@ -1,3 +1,4 @@
+// tcp 验证传输的数据不存在数据边界
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -45,7 +46,7 @@ int main(int argc, char const *argv[])
   if (clnt_sock == -1) {
     error_handling("accept() error");
   }
-
+  // 一次写入
   write(clnt_sock, message, sizeof(message));
   close(clnt_sock);
   close(serv_sock);
@@ -57,3 +58,7 @@ void error_handling(char *message) {
   fputc('\n', stderr);
   exit(1);
 }
+/**
+ * gcc tcp_server.c -o server
+ * ./server 127.0.0.1 9190
+*/

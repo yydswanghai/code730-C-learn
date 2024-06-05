@@ -54,7 +54,7 @@ int main(int argc, char const *argv[])
     }
     str_len++;
   }
-  printf("Function write call count: %d \n", str_len);
+  printf("函数一共写入了%d次 \n", str_len);
   
   close(clnt_sock);
   close(serv_sock);
@@ -66,3 +66,7 @@ void error_handling(char *message) {
   fputc('\n', stderr);
   exit(1);
 }
+/**
+ * gcc tcp_server2.c -o server2
+ * ./server2 127.0.0.1 9190
+*/

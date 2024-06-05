@@ -36,7 +36,7 @@ int main(int argc, char const *argv[])
     error_handling("connect() error");
   }
 
-  // 每次读取一个字节，read如果为0跳出循环
+  // 循环读取多次，每次读取一个字节，read如果为0跳出循环
   while( (read_len=read(sock, &message[idx++], 1)) ){
     if (read_len == -1) {
         error_handling("read() error");
@@ -44,13 +44,8 @@ int main(int argc, char const *argv[])
     str_len += read_len;
   }
 
-  // str_len = read(sock, message, sizeof(message)-1);
-  // if (str_len == -1) {
-  //   error_handling("read() error");
-  // }
-
-  printf("message from server : %s \n", message);
-  printf("Function read call count: %d \n", str_len);
+  printf("message from server: %s \n", message);
+  printf("函数累计读取到的字节数 : %d \n", str_len);
   close(sock);
   return 0;
 }
@@ -60,3 +55,7 @@ void error_handling(char *message) {
   fputc('\n', stderr);
   exit(1);
 }
+/**
+ * gcc tcp_client.c -o client
+ * ./client 127.0.0.1 9190
+*/
