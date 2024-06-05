@@ -28,8 +28,4 @@
 int select(int maxfd, fd_set * readset, fd_set * writeset, fd_set * exceptset, const struct timeval * timeout);
 ```
 
-0: 标准输入（接收）
-1: 标准输出（传输）
-2: 标准错误（异常）
-
 你要监视3种监视项中的哪些项，就分别声明一个/多个fd_set型的变量，传递地址值到第2至第4个参数

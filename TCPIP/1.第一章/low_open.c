@@ -3,7 +3,8 @@
 #include <stdlib.h>
 #include <fcntl.h>
 #include <unistd.h>
-#include "../common/index.h"
+
+void error_handling(char *message);
 
 int main(int argc, char const *argv[])
 {
@@ -15,15 +16,21 @@ int main(int argc, char const *argv[])
   if(fd == -1){
     error_handling("open() error!");
   }
-  printf("file descriptor: %d \n", fd);
+  printf("file descriptor(文件描述符): %d \n", fd);
 
-  if(write(fd, buf, sizeof(buf)) == -1 ){
+  if(write(fd, buf, sizeof(buf)) == -1){
     error_handling("write() error!");
   }
   close(fd);
   return 0;
 }
+
+void error_handling(char *message) {
+  fputs(message, stderr);
+  fputc('\n', stderr);
+  exit(1);
+}
 /**
- * gcc low_open.c ../common/index.c -o open
+ * gcc low_open.c -o open
  * ./open
 */

@@ -58,3 +58,7 @@ void error_handling(char *message) {
   fputc('\n', stderr);
   exit(1);
 }
+/**
+ * gcc hello_server.c -o hserver
+ * ./hserver 9190
+*/

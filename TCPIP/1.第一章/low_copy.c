@@ -24,7 +24,7 @@ int main(int argc, char const *argv[])
   }
   char buf[BUF_SIZE];
   ssize_t bytes_read;
-  printf("buf size %lu\n", sizeof(buf));
+  printf("buf size %zu\n", sizeof(buf));
 
   while ( (bytes_read = read(source_fd, buf, sizeof(buf))) > 0 ) {
     ssize_t bytes_written = write(dest_fd, buf, bytes_read);
@@ -49,3 +49,7 @@ void error_handling(char *message) {
   fputc('\n', stderr);
   exit(1);
 }
+/**
+ * gcc low_copy.c -o copy
+ * ./copy data.txt copy_data.txt
+*/

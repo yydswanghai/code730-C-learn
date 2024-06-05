@@ -16,7 +16,7 @@ int main(int argc, char const *argv[])
   if(fd == -1) {
     error_handling("open() error!");
   }
-  printf("file descriptor: %d \n", fd);
+  printf("file descriptor(文件描述符): %d \n", fd);
   
   // 向数组buf保存读入的数据
   if(read(fd, buf, sizeof(buf)) == -1) {
@@ -33,3 +33,7 @@ void error_handling(char *message) {
   fputc('\n', stderr);
   exit(1);
 }
+/**
+ * gcc low_read.c -o read
+ * ./read
+*/

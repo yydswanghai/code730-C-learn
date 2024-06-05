@@ -70,8 +70,16 @@ int connect(int sockfd, struct sockaddr *serv_addr, socklen_t addrlen);
 ```
 
 * 注意：创建套接字，但此时套接字并不马上分为服务器和客户端。
-  * 如果紧接着调用bind、listen函数，将成为服务端套接字
-  * 如果紧接着调用connect函数，将成为客户端套接字
+  * 如果紧接着调用`bind`、`listen`函数，将成为服务端套接字
+  * 如果紧接着调用`connect`函数，将成为客户端套接字
+
+## 文件描述符
+
+| 文件描述符 | 对象                     |
+| -------- | ----------------------- |
+| 0        | 标准输入: Standard Input  |
+| 1        | 标准输出: Standard Output |
+| 2        | 标准错误: Standard Error  |
 
 ```c
 #include <sys/types.h>
@@ -79,14 +87,14 @@ int connect(int sockfd, struct sockaddr *serv_addr, socklen_t addrlen);
 #include <fcntl.h>
 /**
  * 打开文件
- * @param path 文件名的字符串地址
+ * @param path 目标文件名的字符串地址
  * @param flag 文件打开模式信息
  * @return 成功返回文件描述符，失败返回-1
  */
 int open(const char* path, int flag);
 ```
 
-下表是此函数第二个参数flag可能的常量值及含义。如需传递多个参数，则应通过位或运算(OR)符组合并传递
+下表是此函数第二个参数`flag`可能的常量值及含义。如需传递多个参数，则应通过位或运算(OR)符组合并传递
 
 | 打开模式  | 含义           |
 | -------- | ------------- |
@@ -119,7 +127,8 @@ int close(int fd);
 ssize_t write(int fd, const void* buf, size_t nbytes);
 ```
 
-注意：此函数定义中，size_t是通过typedef声明的unsigned int类型，对ssize_t来说，size_t前面多的s代表signed，即ssize_t是通过typedef声明的signed int类。
+注意：此函数定义中，`size_t`是通过`typedef`声明的`unsigned int`类型
+对`ssize_t`来说，`size_t`前面多的s代表`signed`，即`ssize_t`是通过`typedef`声明的`signed int`类。
 
 ```c
 #include <unistd.h>
